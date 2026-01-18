@@ -1,10 +1,22 @@
 
 import axios from 'axios';
 
-// Updated to use process.env to resolve TypeScript errors with ImportMeta in this environment
-const BASE_URL = process.env.VITE_API_URL || "https://beauty.neuronextbd.com/wp-json";
-const CONSUMER_KEY = process.env.VITE_WC_CONSUMER_KEY || "ck_50416d9a04117a6fc6ba3611888a892c253d2b96";
-const CONSUMER_SECRET = process.env.VITE_WC_CONSUMER_SECRET || "cs_9a205fc028fd89fc5f58106e08e32d31ddc76ba5";
+/**
+ * In Vite/Vercel, we use import.meta.env.
+ * We add a fallback to the strings you provided to ensure the app works 
+ * even if environment variables are not yet configured in the Vercel dashboard.
+ */
+
+// Helper to safely get env variables in Vite
+const getEnv = (key: string, fallback: string) => {
+  // @ts-ignore - Vite specific syntax
+  const env = import.meta.env;
+  return (env && env[key]) ? env[key] : fallback;
+};
+
+const BASE_URL = getEnv('VITE_API_URL', "https://beauty.neuronextbd.com/wp-json");
+const CONSUMER_KEY = getEnv('VITE_WC_CONSUMER_KEY', "ck_50416d9a04117a6fc6ba3611888a892c253d2b96");
+const CONSUMER_SECRET = getEnv('VITE_WC_CONSUMER_SECRET', "cs_9a205fc028fd89fc5f58106e08e32d31ddc76ba5");
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -26,7 +38,6 @@ apiClient.interceptors.request.use((config) => {
   }
 
   // Attach WooCommerce Consumer credentials for standard REST API endpoints
-  // Appending as query parameters is often more reliable for CORS handling on standard WP setups
   if (config.url?.includes('/wc/v3')) {
     config.params = {
       ...config.params,
