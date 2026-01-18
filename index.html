@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lumière Beauty | Luxury Cosmetics</title>
   
-  <!-- Favicon Fix: Inline transparent icon to prevent 404 -->
+  <!-- Inline Favicon to prevent 404 -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -44,29 +44,25 @@
     h1, h2, h3, h4, .font-serif {
       font-family: 'Playfair Display', serif;
     }
-    /* Hide scrollbar but keep functionality */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "framer-motion": "https://esm.sh/framer-motion@11.11.17",
-    "react/": "https://esm.sh/react@19.0.0/",
-    "react": "https://esm.sh/react@19.0.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@7.1.1",
-    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
-    "axios": "https://esm.sh/axios@1.7.9"
+  <script type="importmap">
+  {
+    "imports": {
+      "framer-motion": "https://esm.sh/framer-motion@11.11.17",
+      "react/": "https://esm.sh/react@19.0.0/",
+      "react": "https://esm.sh/react@19.0.0",
+      "react-router-dom": "https://esm.sh/react-router-dom@7.1.1",
+      "react-dom/": "https://esm.sh/react-dom@19.0.0/",
+      "axios": "https://esm.sh/axios@1.7.9"
+    }
   }
-}
-</script>
+  </script>
 </head>
 <body class="bg-nude-50 text-luxury-black antialiased">
   <div id="root"></div>
+  <!-- Explicitly loading the index script for Vercel/Production deployment -->
+  <script type="module" src="index.tsx"></script>
 </body>
 </html>
