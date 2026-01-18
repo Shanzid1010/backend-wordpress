@@ -71,6 +71,10 @@ export const authService = {
     const response = await apiClient.post('/jwt-auth/v1/token', { username, password });
     return response.data;
   },
+  register: async (userData: { email: string; username: string; password: string; first_name: string; last_name: string }): Promise<User> => {
+    const response = await apiClient.post('/wc/v3/customers', userData);
+    return response.data;
+  },
   getCurrentUser: async (id: number): Promise<User> => {
     const response = await apiClient.get(`/wc/v3/customers/${id}`);
     return response.data;

@@ -6,6 +6,7 @@ import { authService } from '../api/services';
 interface AuthContextType {
   user: User | null;
   login: (username: string, password: string) => Promise<void>;
+  register: (userData: any) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
   isLoading: boolean;
@@ -39,6 +40,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  const register = async (userData: any) => {
+    try {
+      await authService.register(userData);
+      // After registration, we usually want the user to log in
+      await login(userData.username, userData.password);
+    } catch (e) {
+      throw e;
+    }
+  };
+
   const logout = () => {
     localStorage.removeItem('lumiere_token');
     localStorage.removeItem('lumiere_user');
@@ -46,7 +57,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user, isLoading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, isAuthenticated: !!user, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

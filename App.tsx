@@ -9,6 +9,7 @@ import Shop from './pages/Shop';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 
 const App: React.FC = () => {
@@ -25,12 +26,13 @@ const App: React.FC = () => {
                 <Route path="/product/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="*" element={
                   <div className="h-screen flex flex-col items-center justify-center">
                     <h1 className="text-9xl font-serif text-nude-100">404</h1>
                     <p className="text-xl font-serif -mt-10 italic">Page Vanished</p>
-                    <button onClick={() => window.location.href = '/'} className="mt-8 text-xs font-bold uppercase tracking-widest border-b border-luxury-black">Return Home</button>
+                    <button onClick={() => window.location.href = '#/'} className="mt-8 text-xs font-bold uppercase tracking-widest border-b border-luxury-black">Return Home</button>
                   </div>
                 } />
               </Routes>
@@ -39,7 +41,6 @@ const App: React.FC = () => {
             <footer className="bg-white border-t border-nude-100 py-20">
               <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
                 <div className="col-span-1 md:col-span-1">
-                  {/* Fixed: Link component now imported from react-router-dom */}
                   <Link to="/" className="text-3xl font-serif tracking-widest text-luxury-black mb-6 block">LUMIÈRE</Link>
                   <p className="text-gray-400 text-xs leading-relaxed tracking-wide">
                     Elevating the ritual of self-care through meticulously crafted cosmetics and skincare.
@@ -48,9 +49,9 @@ const App: React.FC = () => {
                 <div>
                   <h4 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-6">Concierge</h4>
                   <ul className="space-y-3 text-xs tracking-wide">
-                    <li><Link to="/#about" className="hover:text-rose-gold">Our Heritage</Link></li>
-                    <li><Link to="/#faq" className="hover:text-rose-gold">Shipping & Returns</Link></li>
-                    <li><Link to="/#contact" className="hover:text-rose-gold">Contact Us</Link></li>
+                    <li><Link to="/" className="hover:text-rose-gold">Our Heritage</Link></li>
+                    <li><Link to="/" className="hover:text-rose-gold">Shipping & Returns</Link></li>
+                    <li><Link to="/" className="hover:text-rose-gold">Contact Us</Link></li>
                   </ul>
                 </div>
                 <div>
